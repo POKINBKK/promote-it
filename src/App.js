@@ -51,9 +51,34 @@ function App() {
     },
   ];
 
+  const colors = [
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ];
+
+  const levels = [
+    "50",
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+    "900",
+  ];
+
   const [artistName, setArtistName] = React.useState("Your Artist Name");
   const [songTitle, setSongTitle] = React.useState("Your Song Title");
   const [selectedStreaming, setSelectedStreaming] = React.useState([]);
+  const [coverColor, setCoverColor] = React.useState("bg-red-200");
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -86,6 +111,10 @@ function App() {
     setSelectedStreaming(cloneSelectedStreaming);
   };
 
+  const handlebgColor = (color, level) => {
+    setCoverColor("bg-" + color + "-" + level);
+  };
+
   return (
     <div className="w-full">
       <div className="text-center py-8">
@@ -95,7 +124,7 @@ function App() {
         <div className="col-span-3">
           <div
             id="cover-image"
-            className="default-cover bg-red-200 text-center"
+            className={"default-cover " + coverColor + " text-center"}
           >
             <div>
               <p className="pt-14 text-3xl text-gray-900">
@@ -179,7 +208,19 @@ function App() {
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Select Background Color</p>
-            <input className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none" />
+            {colors.map((color) => (
+              <div key={color} className="grid grid-cols-10 gap-1 pt-1">
+                {levels.map((level) => (
+                  <div
+                    className={
+                      "col-span-1 h-8 cursor-pointer bg-" + color + "-" + level
+                    }
+                    onClick={() => handlebgColor(color, level)}
+                    key={level}
+                  ></div>
+                ))}
+              </div>
+            ))}
           </div>
           <div className="w-full py-4">
             <button className="flex mx-auto bg-pink-500 text-md p-2 rounded text-white hover:bg-pink-600 focus:outline-none">
