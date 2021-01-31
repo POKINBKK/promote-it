@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import { FaPaintBrush, FaFileImage } from "react-icons/fa";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
 
 function App() {
   const streamingPlatforms = [
@@ -115,6 +117,14 @@ function App() {
     setCoverColor("bg-" + color + "-" + level);
   };
 
+  const handleSaveAs = () => {
+    domtoimage
+      .toBlob(document.getElementById("cover-image"))
+      .then(function (blob) {
+        window.saveAs(blob, "single-cover.png");
+      });
+  };
+
   return (
     <div className="w-full">
       <div className="text-center py-8">
@@ -223,7 +233,10 @@ function App() {
             ))}
           </div>
           <div className="w-full py-4">
-            <button className="flex mx-auto bg-pink-500 text-md p-2 rounded text-white hover:bg-pink-600 focus:outline-none">
+            <button
+              onClick={handleSaveAs}
+              className="flex mx-auto bg-pink-500 text-md p-2 rounded text-white hover:bg-pink-600 focus:outline-none"
+            >
               <FaFileImage className="my-auto" />
               <p className="pl-2">Save Image</p>
             </button>
