@@ -1,7 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400&display=swap");
 
 .default-cover {
   width: 1080px;
   height: 1080px;
-  font-family: "Prompt", sans-serif;
+  font-family: "Kanit", sans-serif;
+}
+
+.coverimg-size {
+  width: 38rem;
 }

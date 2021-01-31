@@ -5,59 +5,55 @@ import { FaPaintBrush, FaFileImage } from "react-icons/fa";
 function App() {
   const streamingPlatforms = [
     {
-      id: 1,
+      id: "1",
       name: "joox",
       display: "Joox",
     },
     {
-      id: 2,
+      id: "2",
       name: "spotify",
       display: "Spotify",
     },
     {
-      id: 3,
+      id: "3",
       name: "applemusic",
       display: "Apple Music",
     },
     {
-      id: 4,
+      id: "4",
       name: "itunes",
       display: "iTunes",
     },
     {
-      id: 5,
+      id: "5",
       name: "tidal",
       display: "Tidal",
     },
     {
-      id: 6,
+      id: "6",
       name: "youtubemusic",
       display: "Youtube Music",
     },
     {
-      id: 7,
+      id: "7",
       name: "soundcloud",
       display: "SoundCloud",
     },
     {
-      id: 8,
+      id: "8",
       name: "deezer",
       display: "Deezer",
     },
     {
-      id: 9,
+      id: "9",
       name: "kkbox",
       display: "KKBox",
-    },
-    {
-      id: 10,
-      name: "trueidmusic",
-      display: "TrueID Music",
     },
   ];
 
   const [artistName, setArtistName] = React.useState("Your Artist Name");
   const [songTitle, setSongTitle] = React.useState("Your Song Title");
+  const [selectedStreaming, setSelectedStreaming] = React.useState([]);
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -65,6 +61,29 @@ function App() {
 
   const handleSongTitle = (e) => {
     setSongTitle(e.target.value);
+  };
+
+  const handleStreaming = (e) => {
+    let cloneSelectedStreaming = [...selectedStreaming];
+    let item;
+    let isUncheck = false;
+    for (let i = 0; i < streamingPlatforms.length; i++) {
+      if (streamingPlatforms[i].id === e.target.value) {
+        item = streamingPlatforms[i];
+      }
+    }
+    if (cloneSelectedStreaming.length > 0) {
+      for (let i = 0; i < cloneSelectedStreaming.length; i++) {
+        if (cloneSelectedStreaming[i].id === item.id) {
+          isUncheck = true;
+          cloneSelectedStreaming.splice(i, 1);
+        }
+      }
+    }
+    if (!isUncheck) {
+      cloneSelectedStreaming = [...cloneSelectedStreaming, item];
+    }
+    setSelectedStreaming(cloneSelectedStreaming);
   };
 
   return (
@@ -78,10 +97,32 @@ function App() {
             id="cover-image"
             className="default-cover bg-red-200 text-center"
           >
-            <p className="pt-20 text-4xl">
-              สามารถฟังเพลงใหม่จาก "{artistName}"
-            </p>
-            <p className="pt-8 text-6xl">{songTitle}</p>
+            <div>
+              <p className="pt-14 text-3xl text-gray-900">
+                สามารถฟังเพลงใหม่จาก "{artistName}"
+              </p>
+              <p className="pt-4 text-7xl text-gray-900">{songTitle}</p>
+            </div>
+            <div className="py-8">
+              <img
+                src="asset/dummy_songcover.png"
+                className="coverimg-size mx-auto shadow-2xl"
+                alt="your song cover"
+              />
+            </div>
+            <div>
+              <p className="pt-4 text-3xl text-gray-900">ได้แล้ววันนี้ที่</p>
+              <div className="pt-2 flex items-center justify-center">
+                {selectedStreaming.map((item) => (
+                  <img
+                    key={item.id}
+                    className="w-1/6 mx-4"
+                    src={"asset/streaming-icon-b/" + item.name + "-b.png"}
+                    alt={item.display}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <div className="col-span-1 p-2 border rounded">
@@ -114,6 +155,7 @@ function App() {
                     id={item.name}
                     name={item.name}
                     value={item.id}
+                    onChange={handleStreaming}
                   />
                   <label className="text-lg" htmlFor={item.name}>
                     {item.display}
