@@ -355,7 +355,7 @@ function App() {
               >
                 ได้แล้ววันนี้ที่
               </p>
-              <div className="pt-2 flex items-center justify-center overflow-x-hidden">
+              <div className="pt-3 flex items-center justify-center overflow-x-hidden">
                 {selectedStreaming.map((item) => (
                   <img
                     key={item.id}
