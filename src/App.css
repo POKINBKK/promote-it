@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Grandstander:ital,wght@1,500&display=swap");
 
 .default-cover {
   width: 1080px;
@@ -8,6 +9,15 @@
 
 .coverimg-size {
   width: 38rem;
+}
+
+.header-style {
+  font-family: "Bungee Shade", cursive;
+  font-family: "Grandstander", cursive;
+}
+
+.w-fit {
+  width: fit-content;
 }
 
 /* thai */

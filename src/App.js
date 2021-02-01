@@ -1,6 +1,14 @@
 import React from "react";
 import "./App.css";
-import { FaPaintBrush, FaFileImage, FaSimplybuilt } from "react-icons/fa";
+import {
+  FaPaintBrush,
+  FaFileImage,
+  FaSimplybuilt,
+  FaYoutube,
+  FaFacebook,
+  FaInstagram,
+  FaGrinStars,
+} from "react-icons/fa";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 
@@ -162,8 +170,15 @@ function App() {
 
   return (
     <div className="w-full">
-      <div className="text-center py-4 bg-gradient-to-br from-pink-500 to-red-500 shadow-xl z-50 flex">
-        <p className="font-bold text-white">Promote it! by</p>
+      <div className="text-center bg-gradient-to-br from-pink-500 to-red-500 shadow-xl z-50">
+        <div className="flex items-center justify-center">
+          <p className="text-3xl text-white header-style">Promote it! by</p>
+          <img
+            src="asset/pok_logo_white.png"
+            className="w-16 ml-4"
+            alt="pok supakit logo"
+          />
+        </div>
       </div>
       <div className="w-full px-8 py-4 grid grid-cols-4 gap-2 z-40">
         <div className="col-span-1 p-2 border rounded-xl bg-gray-50 shadow-md">
@@ -363,8 +378,49 @@ function App() {
               alt="your logo"
             />
           </div>
-          <div className="w-full border rounded-md mt-8 text-center py-16">
-            <p>Support me!</p>
+          <div className="w-full border rounded-xl mt-8 bg-gray-50 shadow-md">
+            <div className="py-6 flex w-fit mx-auto">
+              <FaGrinStars className="w-12 text-yellow-400 mt-2" size={28} />
+              <p className="text-4xl">Support me!</p>
+            </div>
+            <div className="flex w-fit mx-auto pb-4">
+              <a
+                href="https://www.youtube.com/channel/UCp-1AwMqegD9rj4SPKtw3sg"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="py-2 px-4 flex">
+                  <FaYoutube className="w-12 mt-1 text-red-500" size={28} />
+                  <p className="text-2xl">POK SUPAKIT</p>
+                </div>
+              </a>
+              <a
+                href="https://www.facebook.com/poksupakitishere"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="py-2 px-4 flex">
+                  <FaFacebook className="w-12 mt-1 text-blue-600" size={28} />
+                  <p className="text-2xl">POK SUPAKIT</p>
+                </div>
+              </a>
+              <a
+                href="https://www.instagram.com/p_o.k/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="py-2 px-4 flex">
+                  <FaInstagram
+                    className="w-12 mt-2 text-purple-600"
+                    size={28}
+                  />
+                  <p className="text-2xl">p_o.k</p>
+                </div>
+              </a>
+            </div>
+            <div className="border-t py-4 text-center">
+              <p>© Promote it! by POK SUPAKIT 2021, All Right Reserved. </p>
+            </div>
           </div>
         </div>
       </div>
