@@ -168,8 +168,8 @@ function App() {
     "900",
   ];
 
-  const [artistName, setArtistName] = React.useState("Your Artist Name");
-  const [songTitle, setSongTitle] = React.useState("Your Song Title");
+  const [artistName, setArtistName] = React.useState("Your Artist(s) Name");
+  const [songTitle, setSongTitle] = React.useState("Your Title");
   const [selectedStreaming, setSelectedStreaming] = React.useState([]);
   const [coverColor, setCoverColor] = React.useState("bg-pink-400");
   const [artwork, setArtwork] = React.useState(
@@ -179,7 +179,7 @@ function App() {
     `${process.env.PUBLIC_URL}/asset/dummy_logo.png`
   );
   const [fontMode, setFontMode] = React.useState("w");
-  const [musicType, setmusicType] = React.useState(0);
+  const [musicType, setMusicType] = React.useState("0");
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -255,6 +255,9 @@ function App() {
   const handleMode = (e) => {
     setFontMode(e.target.value);
   };
+  const handleType = (e) => {
+    setMusicType(e.target.value);
+  };
 
   return (
     <div className="w-full">
@@ -282,11 +285,53 @@ function App() {
             />
           </div>
           <div className="w-full pt-4">
-            <p className="text-xl pb-2">Song Title</p>
+            <p className="text-xl pb-2">Song/EP./Album Title</p>
             <input
               onChange={handleSongTitle}
               className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none"
             />
+          </div>
+          <div className="w-full pt-4">
+            <p className="text-xl pb-2">Type</p>
+            <div>
+              <input
+                type="radio"
+                id="song"
+                name="type"
+                value={0}
+                className="w-8"
+                onClick={handleType}
+                defaultChecked
+              />
+              <label htmlFor="song" className="text-lg">
+                Song
+              </label>
+              <br />
+              <input
+                type="radio"
+                id="ep"
+                name="type"
+                value={1}
+                className="w-8"
+                onClick={handleType}
+              />
+              <label htmlFor="ep" className="text-lg">
+                EP.
+              </label>
+              <br />
+              <input
+                type="radio"
+                id="album"
+                name="type"
+                value={3}
+                className="w-8"
+                onClick={handleType}
+              />
+              <label htmlFor="album" className="text-lg">
+                Album
+              </label>
+              <br />
+            </div>
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Mode</p>
@@ -414,7 +459,11 @@ function App() {
                     : "text-white pt-14 text-3xl"
                 }
               >
-                สามารถฟังเพลงใหม่จาก "{artistName}"
+                {musicType === "0"
+                  ? 'สามารถฟังเพลงใหม่จาก "' + artistName + '"'
+                  : musicType === "1"
+                  ? 'สามารถฟังEP.ใหม่จาก "' + artistName + '"'
+                  : 'สามารถฟังอัลบั้มใหม่จาก "' + artistName + '"'}
               </p>
               <p
                 className={
