@@ -289,7 +289,7 @@ function App() {
             />
           </div>
           <div className="w-full pt-4">
-            <p className="text-xl pb-2">Song/EP./Album Title</p>
+            <p className="text-xl pb-2">Song/EP/Album Title</p>
             <input
               onChange={handleSongTitle}
               className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none"
@@ -350,7 +350,7 @@ function App() {
                 onClick={handleType}
               />
               <label htmlFor="ep" className="text-lg">
-                EP.
+                EP
               </label>
               <br />
               <input
@@ -497,12 +497,12 @@ function App() {
                   ? musicType === "0"
                     ? 'สามารถฟังเพลงใหม่จาก "' + artistName + '"'
                     : musicType === "1"
-                    ? 'สามารถฟังEP.ใหม่จาก "' + artistName + '"'
+                    ? 'สามารถฟัง EP ใหม่จาก "' + artistName + '"'
                     : 'สามารถฟังอัลบั้มใหม่จาก "' + artistName + '"'
                   : musicType === "0"
                   ? 'New Song from "' + artistName + '"'
                   : musicType === "1"
-                  ? 'New EP. from "' + artistName + '"'
+                  ? 'New EP from "' + artistName + '"'
                   : 'New Album from "' + artistName + '"'}
               </p>
               <p
