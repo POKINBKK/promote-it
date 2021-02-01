@@ -307,7 +307,7 @@ function App() {
                 onClick={handleLanguage}
                 defaultChecked
               />
-              <label htmlFor="white" className="text-lg">
+              <label htmlFor="th" className="text-lg">
                 Thai
               </label>
               <br />
@@ -319,7 +319,7 @@ function App() {
                 className="w-8"
                 onClick={handleLanguage}
               />
-              <label htmlFor="black" className="text-lg">
+              <label htmlFor="en" className="text-lg">
                 English
               </label>
               <br />
