@@ -251,7 +251,7 @@ function App() {
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Upload Your Logo</p>
             <p className="text-md pb-1 text-red-600">
-              (reacommended at more than 1000px*1000px and square)
+              (reacommended at more than 800px*800px and square)
             </p>
             <input
               type="file"
