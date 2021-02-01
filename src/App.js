@@ -165,74 +165,8 @@ function App() {
       <div className="text-center py-8">
         <p className="font-bold">Single Cover Editor by POK SUPAKIT</p>
       </div>
-      <div className="w-full px-8 pb-8 grid grid-cols-4 gap-4">
-        <div className="col-span-3">
-          <div
-            id="cover-image"
-            className={"default-cover relative " + coverColor + " text-center"}
-          >
-            <div>
-              <p
-                className={
-                  fontMode === "b"
-                    ? "text-gray-900 pt-14 text-3xl"
-                    : "text-white pt-14 text-3xl"
-                }
-              >
-                สามารถฟังเพลงใหม่จาก "{artistName}"
-              </p>
-              <p
-                className={
-                  fontMode === "b"
-                    ? "pt-4 text-7xl text-gray-900"
-                    : "pt-4 text-7xl text-white"
-                }
-              >
-                {songTitle}
-              </p>
-            </div>
-            <div className="py-8">
-              <img
-                src={artwork}
-                className="coverimg-size mx-auto shadow-2xl"
-                alt="your song cover"
-              />
-            </div>
-            <div>
-              <p
-                className={
-                  fontMode === "b"
-                    ? "pt-4 text-3xl text-gray-900"
-                    : "pt-4 text-3xl text-white"
-                }
-              >
-                ได้แล้ววันนี้ที่
-              </p>
-              <div className="pt-2 flex items-center justify-center overflow-x-hidden">
-                {selectedStreaming.map((item) => (
-                  <img
-                    key={item.id}
-                    className="w-1/6 mx-4"
-                    src={
-                      "asset/streaming-icon-" +
-                      fontMode +
-                      "/" +
-                      item.name +
-                      ".png"
-                    }
-                    alt={item.display}
-                  />
-                ))}
-              </div>
-            </div>
-            <img
-              src={logo}
-              className="w-16 absolute bottom-2 right-2"
-              alt="your logo"
-            />
-          </div>
-        </div>
-        <div className="col-span-1 p-2 border rounded">
+      <div className="w-full px-8 pb-8 grid grid-cols-4 gap-2">
+        <div className="col-span-1 p-2 border rounded-xl bg-gray-50 shadow-md">
           <div className="pb-2 border-b flex">
             <FaPaintBrush className="w-12 mt-2" size={24} />
             <p className="text-4xl">Editor</p>
@@ -360,6 +294,72 @@ function App() {
               <FaFileImage className="my-auto" />
               <p className="pl-2">Save Image</p>
             </button>
+          </div>
+        </div>
+        <div className="col-span-3 items-center justify-center pl-4">
+          <div
+            id="cover-image"
+            className={"default-cover relative " + coverColor + " text-center"}
+          >
+            <div>
+              <p
+                className={
+                  fontMode === "b"
+                    ? "text-gray-900 pt-14 text-3xl"
+                    : "text-white pt-14 text-3xl"
+                }
+              >
+                สามารถฟังเพลงใหม่จาก "{artistName}"
+              </p>
+              <p
+                className={
+                  fontMode === "b"
+                    ? "pt-4 text-7xl text-gray-900"
+                    : "pt-4 text-7xl text-white"
+                }
+              >
+                {songTitle}
+              </p>
+            </div>
+            <div className="py-8">
+              <img
+                src={artwork}
+                className="coverimg-size mx-auto shadow-2xl"
+                alt="your song cover"
+              />
+            </div>
+            <div>
+              <p
+                className={
+                  fontMode === "b"
+                    ? "pt-4 text-3xl text-gray-900"
+                    : "pt-4 text-3xl text-white"
+                }
+              >
+                ได้แล้ววันนี้ที่
+              </p>
+              <div className="pt-2 flex items-center justify-center overflow-x-hidden">
+                {selectedStreaming.map((item) => (
+                  <img
+                    key={item.id}
+                    className="w-1/6 mx-4"
+                    src={
+                      "asset/streaming-icon-" +
+                      fontMode +
+                      "/" +
+                      item.name +
+                      ".png"
+                    }
+                    alt={item.display}
+                  />
+                ))}
+              </div>
+            </div>
+            <img
+              src={logo}
+              className="w-16 absolute bottom-2 right-2"
+              alt="your logo"
+            />
           </div>
         </div>
       </div>
