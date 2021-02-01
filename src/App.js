@@ -82,6 +82,7 @@ function App() {
   const [selectedStreaming, setSelectedStreaming] = React.useState([]);
   const [coverColor, setCoverColor] = React.useState("bg-red-200");
   const [artwork, setArtwork] = React.useState("asset/dummy_songcover.png");
+  const [logo, setLogo] = React.useState("asset/dummy_logo.png");
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -136,6 +137,16 @@ function App() {
     reader.readAsDataURL(e.target.files[0]);
   };
 
+  const handleLogo = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setLogo(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   return (
     <div className="w-full">
       <div className="text-center py-8">
@@ -145,7 +156,7 @@ function App() {
         <div className="col-span-3">
           <div
             id="cover-image"
-            className={"default-cover " + coverColor + " text-center"}
+            className={"default-cover relative " + coverColor + " text-center"}
           >
             <div>
               <p className="pt-14 text-3xl text-gray-900">
@@ -167,12 +178,17 @@ function App() {
                   <img
                     key={item.id}
                     className="w-1/6 mx-4"
-                    src={"asset/streaming-icon-b/" + item.name + "-b.png"}
+                    src={"asset/streaming-icon-b/" + item.name + ".png"}
                     alt={item.display}
                   />
                 ))}
               </div>
             </div>
+            <img
+              src={logo}
+              className="w-16 absolute bottom-2 right-2"
+              alt="your logo"
+            />
           </div>
         </div>
         <div className="col-span-1 p-2 border rounded">
@@ -225,7 +241,7 @@ function App() {
             </p>
             <input
               type="file"
-              name="image-upload"
+              name="artwork-upload"
               id="image-input1"
               accept="image/*"
               onChange={handleArtwork}
@@ -234,11 +250,17 @@ function App() {
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Upload Your Logo</p>
-            <input className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none" />
-          </div>
-          <div className="w-full pt-4">
-            <p className="text-xl pb-2">Upload Background Image</p>
-            <input className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none" />
+            <p className="text-md pb-1 text-red-600">
+              (reacommended at more than 1000px*1000px and square)
+            </p>
+            <input
+              type="file"
+              name="logo-upload"
+              id="image-input2"
+              accept="image/*"
+              onChange={handleLogo}
+              className="border pt-2 rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none"
+            />
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Select Background Color</p>
