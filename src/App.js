@@ -180,6 +180,7 @@ function App() {
   );
   const [fontMode, setFontMode] = React.useState("w");
   const [musicType, setMusicType] = React.useState("0");
+  const [language, setLanguage] = React.useState("th");
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -258,6 +259,9 @@ function App() {
   const handleType = (e) => {
     setMusicType(e.target.value);
   };
+  const handleLanguage = (e) => {
+    setLanguage(e.target.value);
+  };
 
   return (
     <div className="w-full">
@@ -290,6 +294,36 @@ function App() {
               onChange={handleSongTitle}
               className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none"
             />
+          </div>
+          <div className="w-full pt-4">
+            <p className="text-xl pb-2">Language</p>
+            <div>
+              <input
+                type="radio"
+                id="th"
+                name="lang"
+                value="th"
+                className="w-8"
+                onClick={handleLanguage}
+                defaultChecked
+              />
+              <label htmlFor="white" className="text-lg">
+                Thai
+              </label>
+              <br />
+              <input
+                type="radio"
+                id="en"
+                name="lang"
+                value="en"
+                className="w-8"
+                onClick={handleLanguage}
+              />
+              <label htmlFor="black" className="text-lg">
+                English
+              </label>
+              <br />
+            </div>
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Type</p>
@@ -459,11 +493,17 @@ function App() {
                     : "text-white pt-14 text-3xl"
                 }
               >
-                {musicType === "0"
-                  ? 'สามารถฟังเพลงใหม่จาก "' + artistName + '"'
+                {language === "th"
+                  ? musicType === "0"
+                    ? 'สามารถฟังเพลงใหม่จาก "' + artistName + '"'
+                    : musicType === "1"
+                    ? 'สามารถฟังEP.ใหม่จาก "' + artistName + '"'
+                    : 'สามารถฟังอัลบั้มใหม่จาก "' + artistName + '"'
+                  : musicType === "0"
+                  ? 'New Song from "' + artistName + '"'
                   : musicType === "1"
-                  ? 'สามารถฟังEP.ใหม่จาก "' + artistName + '"'
-                  : 'สามารถฟังอัลบั้มใหม่จาก "' + artistName + '"'}
+                  ? 'New EP. from "' + artistName + '"'
+                  : 'New Album from "' + artistName + '"'}
               </p>
               <p
                 className={
@@ -490,7 +530,7 @@ function App() {
                     : "pt-4 text-3xl text-white"
                 }
               >
-                ได้แล้ววันนี้ที่
+                {language === "th" ? "ได้แล้ววันนี้ที่" : "Available now on"}
               </p>
               <div className="pt-3 flex items-center justify-center overflow-x-hidden">
                 {selectedStreaming.map((item) => (
