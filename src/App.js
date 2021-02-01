@@ -83,6 +83,7 @@ function App() {
   const [coverColor, setCoverColor] = React.useState("bg-red-200");
   const [artwork, setArtwork] = React.useState("asset/dummy_songcover.png");
   const [logo, setLogo] = React.useState("asset/dummy_logo.png");
+  const [fontMode, setFontMode] = React.useState("w");
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -134,7 +135,11 @@ function App() {
         setArtwork(reader.result);
       }
     };
-    reader.readAsDataURL(e.target.files[0]);
+    try {
+      reader.readAsDataURL(e.target.files[0]);
+    } catch (error) {
+      setArtwork("asset/dummy_songcover.png");
+    }
   };
 
   const handleLogo = (e) => {
@@ -144,7 +149,15 @@ function App() {
         setLogo(reader.result);
       }
     };
-    reader.readAsDataURL(e.target.files[0]);
+    try {
+      reader.readAsDataURL(e.target.files[0]);
+    } catch (error) {
+      setLogo("asset/dummy_logo.png");
+    }
+  };
+
+  const handleMode = (e) => {
+    setFontMode(e.target.value);
   };
 
   return (
@@ -159,10 +172,24 @@ function App() {
             className={"default-cover relative " + coverColor + " text-center"}
           >
             <div>
-              <p className="pt-14 text-3xl text-gray-900">
+              <p
+                className={
+                  fontMode === "b"
+                    ? "text-gray-900 pt-14 text-3xl"
+                    : "text-white pt-14 text-3xl"
+                }
+              >
                 สามารถฟังเพลงใหม่จาก "{artistName}"
               </p>
-              <p className="pt-4 text-7xl text-gray-900">{songTitle}</p>
+              <p
+                className={
+                  fontMode === "b"
+                    ? "pt-4 text-7xl text-gray-900"
+                    : "pt-4 text-7xl text-white"
+                }
+              >
+                {songTitle}
+              </p>
             </div>
             <div className="py-8">
               <img
@@ -172,13 +199,27 @@ function App() {
               />
             </div>
             <div>
-              <p className="pt-4 text-3xl text-gray-900">ได้แล้ววันนี้ที่</p>
-              <div className="pt-2 flex items-center justify-center">
+              <p
+                className={
+                  fontMode === "b"
+                    ? "pt-4 text-3xl text-gray-900"
+                    : "pt-4 text-3xl text-white"
+                }
+              >
+                ได้แล้ววันนี้ที่
+              </p>
+              <div className="pt-2 flex items-center justify-center overflow-x-hidden">
                 {selectedStreaming.map((item) => (
                   <img
                     key={item.id}
                     className="w-1/6 mx-4"
-                    src={"asset/streaming-icon-b/" + item.name + ".png"}
+                    src={
+                      "asset/streaming-icon-" +
+                      fontMode +
+                      "/" +
+                      item.name +
+                      ".png"
+                    }
                     alt={item.display}
                   />
                 ))}
@@ -209,6 +250,36 @@ function App() {
               onChange={handleSongTitle}
               className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none"
             />
+          </div>
+          <div className="w-full pt-4">
+            <p className="text-xl pb-2">Mode</p>
+            <div>
+              <input
+                type="radio"
+                id="white"
+                name="mode"
+                value="w"
+                className="w-8"
+                onClick={handleMode}
+                defaultChecked
+              />
+              <label htmlFor="white" className="text-lg">
+                Light
+              </label>
+              <br />
+              <input
+                type="radio"
+                id="black"
+                name="mode"
+                value="b"
+                className="w-8"
+                onClick={handleMode}
+              />
+              <label htmlFor="black" className="text-lg">
+                Dark
+              </label>
+              <br />
+            </div>
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Select Streaming Platforms</p>
