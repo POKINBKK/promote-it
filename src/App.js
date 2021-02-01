@@ -172,9 +172,14 @@ function App() {
   const [songTitle, setSongTitle] = React.useState("Your Song Title");
   const [selectedStreaming, setSelectedStreaming] = React.useState([]);
   const [coverColor, setCoverColor] = React.useState("bg-pink-400");
-  const [artwork, setArtwork] = React.useState("asset/dummy_songcover.png");
-  const [logo, setLogo] = React.useState("asset/dummy_logo.png");
+  const [artwork, setArtwork] = React.useState(
+    `${process.env.PUBLIC_URL}/asset/dummy_songcover.png`
+  );
+  const [logo, setLogo] = React.useState(
+    `${process.env.PUBLIC_URL}/asset/dummy_logo.png`
+  );
   const [fontMode, setFontMode] = React.useState("w");
+  const [musicType, setmusicType] = React.useState(0);
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -229,7 +234,7 @@ function App() {
     try {
       reader.readAsDataURL(e.target.files[0]);
     } catch (error) {
-      setArtwork("asset/dummy_songcover.png");
+      setArtwork(`${process.env.PUBLIC_URL}/asset/dummy_songcover.png`);
     }
   };
 
@@ -243,7 +248,7 @@ function App() {
     try {
       reader.readAsDataURL(e.target.files[0]);
     } catch (error) {
-      setLogo("asset/dummy_logo.png");
+      setLogo(`${process.env.PUBLIC_URL}/asset/dummy_logo.png`);
     }
   };
 
@@ -257,7 +262,7 @@ function App() {
         <div className="flex items-center justify-center">
           <p className="text-3xl text-white header-style">Promote it! by</p>
           <img
-            src="asset/pok_logo_white.png"
+            src={`${process.env.PUBLIC_URL}/asset/pok_logo_white.png`}
             className="w-16 ml-4"
             alt="pok supakit logo"
           />
@@ -444,11 +449,11 @@ function App() {
                     key={item.id}
                     className="w-1/6 mx-4"
                     src={
-                      "asset/streaming-icon-" +
+                      `${process.env.PUBLIC_URL}/asset/streaming-icon-` +
                       fontMode +
-                      "/" +
+                      `/` +
                       item.name +
-                      ".png"
+                      `.png`
                     }
                     alt={item.display}
                   />
