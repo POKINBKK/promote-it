@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { FaPaintBrush, FaFileImage } from "react-icons/fa";
+import { FaPaintBrush, FaFileImage, FaSimplybuilt } from "react-icons/fa";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 
@@ -80,7 +80,7 @@ function App() {
   const [artistName, setArtistName] = React.useState("Your Artist Name");
   const [songTitle, setSongTitle] = React.useState("Your Song Title");
   const [selectedStreaming, setSelectedStreaming] = React.useState([]);
-  const [coverColor, setCoverColor] = React.useState("bg-red-200");
+  const [coverColor, setCoverColor] = React.useState("bg-pink-400");
   const [artwork, setArtwork] = React.useState("asset/dummy_songcover.png");
   const [logo, setLogo] = React.useState("asset/dummy_logo.png");
   const [fontMode, setFontMode] = React.useState("w");
@@ -162,10 +162,10 @@ function App() {
 
   return (
     <div className="w-full">
-      <div className="text-center py-8">
-        <p className="font-bold">Single Cover Editor by POK SUPAKIT</p>
+      <div className="text-center py-4 bg-gradient-to-br from-pink-500 to-red-500 shadow-xl z-50 flex">
+        <p className="font-bold text-white">Promote it! by</p>
       </div>
-      <div className="w-full px-8 pb-8 grid grid-cols-4 gap-2">
+      <div className="w-full px-8 py-4 grid grid-cols-4 gap-2 z-40">
         <div className="col-span-1 p-2 border rounded-xl bg-gray-50 shadow-md">
           <div className="pb-2 border-b flex">
             <FaPaintBrush className="w-12 mt-2" size={24} />
@@ -217,9 +217,7 @@ function App() {
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Select Streaming Platforms</p>
-            <p className="text-md pb-1 text-red-600">
-              (recommended at up to 4)
-            </p>
+            <p className="text-md pb-1 text-red-600">(recommended : up to 4)</p>
             <div className="w-full">
               {streamingPlatforms.map((item) => (
                 <div key={item.id}>
@@ -242,7 +240,7 @@ function App() {
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Upload Your Artwork</p>
             <p className="text-md pb-1 text-red-600">
-              (reacommended at more than 1000px*1000px and square)
+              (recommended : more than 1000px*1000px and square)
             </p>
             <input
               type="file"
@@ -256,7 +254,7 @@ function App() {
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Upload Your Logo</p>
             <p className="text-md pb-1 text-red-600">
-              (reacommended at more than 800px*800px and square)
+              (recommended : more than 800px*800px and square)
             </p>
             <input
               type="file"
@@ -297,6 +295,10 @@ function App() {
           </div>
         </div>
         <div className="col-span-3 items-center justify-center pl-4">
+          <div className="pb-2 flex items-center justify-center">
+            <FaSimplybuilt className="w-12 mt-2" size={24} />
+            <p className="text-3xl">Preview</p>
+          </div>
           <div
             id="cover-image"
             className={"default-cover relative " + coverColor + " text-center"}
@@ -360,6 +362,9 @@ function App() {
               className="w-16 absolute bottom-2 right-2"
               alt="your logo"
             />
+          </div>
+          <div className="w-full border rounded-md mt-8 text-center py-16">
+            <p>Support me!</p>
           </div>
         </div>
       </div>
