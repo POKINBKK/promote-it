@@ -81,6 +81,7 @@ function App() {
   const [songTitle, setSongTitle] = React.useState("Your Song Title");
   const [selectedStreaming, setSelectedStreaming] = React.useState([]);
   const [coverColor, setCoverColor] = React.useState("bg-red-200");
+  const [artwork, setArtwork] = React.useState("asset/dummy_songcover.png");
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -125,6 +126,16 @@ function App() {
       });
   };
 
+  const handleArtwork = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setArtwork(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   return (
     <div className="w-full">
       <div className="text-center py-8">
@@ -144,7 +155,7 @@ function App() {
             </div>
             <div className="py-8">
               <img
-                src="asset/dummy_songcover.png"
+                src={artwork}
                 className="coverimg-size mx-auto shadow-2xl"
                 alt="your song cover"
               />
@@ -185,6 +196,9 @@ function App() {
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Select Streaming Platforms</p>
+            <p className="text-md pb-1 text-red-600">
+              (recommended at up to 4)
+            </p>
             <div className="w-full">
               {streamingPlatforms.map((item) => (
                 <div key={item.id}>
@@ -206,7 +220,17 @@ function App() {
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Upload Your Artwork</p>
-            <input className="border rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none" />
+            <p className="text-md pb-1 text-red-600">
+              (reacommended at more than 1000px*1000px and square)
+            </p>
+            <input
+              type="file"
+              name="image-upload"
+              id="image-input1"
+              accept="image/*"
+              onChange={handleArtwork}
+              className="border pt-2 rounded-xl h-12 w-full text-xl px-2 focus-within:border-pink-500 focus:outline-none"
+            />
           </div>
           <div className="w-full pt-4">
             <p className="text-xl pb-2">Upload Your Logo</p>
@@ -223,7 +247,10 @@ function App() {
                 {levels.map((level) => (
                   <div
                     className={
-                      "col-span-1 h-8 cursor-pointer bg-" + color + "-" + level
+                      "col-span-1 h-8 rounded cursor-pointer bg-" +
+                      color +
+                      "-" +
+                      level
                     }
                     onClick={() => handlebgColor(color, level)}
                     key={level}
