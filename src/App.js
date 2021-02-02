@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
+import CoverStyleDefault from "./components/coverStyle/coverStyleDefault";
 
 function App() {
   /**
@@ -481,80 +482,17 @@ function App() {
             <FaSimplybuilt className="w-12 mt-2" size={24} />
             <p className="text-3xl">Preview</p>
           </div>
-          <div
-            id="cover-image"
-            className={"default-cover relative " + coverColor + " text-center"}
-          >
-            <div>
-              <p
-                className={
-                  fontMode === "b"
-                    ? "text-gray-900 pt-14 text-3xl"
-                    : "text-white pt-14 text-3xl"
-                }
-              >
-                {language === "th"
-                  ? musicType === "0"
-                    ? 'สามารถฟังเพลงใหม่จาก "' + artistName + '"'
-                    : musicType === "1"
-                    ? 'สามารถฟัง EP ใหม่จาก "' + artistName + '"'
-                    : 'สามารถฟังอัลบั้มใหม่จาก "' + artistName + '"'
-                  : musicType === "0"
-                  ? 'New Song from "' + artistName + '"'
-                  : musicType === "1"
-                  ? 'New EP from "' + artistName + '"'
-                  : 'New Album from "' + artistName + '"'}
-              </p>
-              <p
-                className={
-                  fontMode === "b"
-                    ? "pt-4 text-7xl text-gray-900"
-                    : "pt-4 text-7xl text-white"
-                }
-              >
-                {songTitle}
-              </p>
-            </div>
-            <div className="py-8">
-              <img
-                src={artwork}
-                className="coverimg-size mx-auto shadow-2xl"
-                alt="your song cover"
-              />
-            </div>
-            <div>
-              <p
-                className={
-                  fontMode === "b"
-                    ? "pt-4 text-3xl text-gray-900"
-                    : "pt-4 text-3xl text-white"
-                }
-              >
-                {language === "th" ? "ได้แล้ววันนี้ที่" : "Available now on"}
-              </p>
-              <div className="pt-3 flex items-center justify-center overflow-x-hidden">
-                {selectedStreaming.map((item) => (
-                  <img
-                    key={item.id}
-                    className="w-1/6 mx-4"
-                    src={
-                      `${process.env.PUBLIC_URL}/asset/streaming-icon-` +
-                      fontMode +
-                      `/` +
-                      item.name +
-                      `.png`
-                    }
-                    alt={item.display}
-                  />
-                ))}
-              </div>
-            </div>
-            <img
-              src={logo}
-              className="w-16 absolute bottom-2 right-2"
-              alt="your logo"
-            />
-          </div>
+          <CoverStyleDefault
+            artistName={artistName}
+            songTitle={songTitle}
+            selectedStreaming={selectedStreaming}
+            coverColor={coverColor}
+            artwork={artwork}
+            logo={logo}
+            fontMode={fontMode}
+            musicType={musicType}
+            language={language}
+          />
           <div className="w-full border rounded-xl mt-8 bg-gray-50 shadow-md">
             <div className="py-6 flex w-fit mx-auto">
               <FaGrinStars className="w-12 text-yellow-400 mt-2" size={28} />
