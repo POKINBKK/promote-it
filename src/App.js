@@ -12,6 +12,7 @@ import {
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import CoverStyleDefault from "./components/coverStyle/coverStyleDefault";
+import CoverStyleVinyl from "./components/coverStyle/coverStyleVinyl";
 
 function App() {
   /**
@@ -182,6 +183,7 @@ function App() {
   const [fontMode, setFontMode] = React.useState("w");
   const [musicType, setMusicType] = React.useState("0");
   const [language, setLanguage] = React.useState("th");
+  const [coverStyle, setCoverStyle] = React.useState("0");
 
   const handleArtistName = (e) => {
     setArtistName(e.target.value);
@@ -262,6 +264,9 @@ function App() {
   };
   const handleLanguage = (e) => {
     setLanguage(e.target.value);
+  };
+  const handleStyle = (e) => {
+    setCoverStyle(e.target.value);
   };
 
   return (
@@ -480,19 +485,59 @@ function App() {
         <div className="col-span-3 items-center justify-center pl-4">
           <div className="pb-2 flex items-center justify-center">
             <FaSimplybuilt className="w-12 mt-2" size={24} />
-            <p className="text-3xl">Preview</p>
+            <p className="text-3xl">Preview</p>{" "}
+            <div>
+              <input
+                type="radio"
+                id="default"
+                name="coverstyle"
+                value="0"
+                className="w-8"
+                onClick={handleStyle}
+                defaultChecked
+              />
+              <label htmlFor="default" className="text-lg">
+                Default
+              </label>
+
+              <input
+                type="radio"
+                id="vinyl"
+                name="coverstyle"
+                value="1"
+                className="w-8"
+                onClick={handleStyle}
+              />
+              <label htmlFor="vinyl" className="text-lg">
+                Vinyl
+              </label>
+            </div>
           </div>
-          <CoverStyleDefault
-            artistName={artistName}
-            songTitle={songTitle}
-            selectedStreaming={selectedStreaming}
-            coverColor={coverColor}
-            artwork={artwork}
-            logo={logo}
-            fontMode={fontMode}
-            musicType={musicType}
-            language={language}
-          />
+          {coverStyle === "0" ? (
+            <CoverStyleDefault
+              artistName={artistName}
+              songTitle={songTitle}
+              selectedStreaming={selectedStreaming}
+              coverColor={coverColor}
+              artwork={artwork}
+              logo={logo}
+              fontMode={fontMode}
+              musicType={musicType}
+              language={language}
+            />
+          ) : (
+            <CoverStyleVinyl
+              artistName={artistName}
+              songTitle={songTitle}
+              selectedStreaming={selectedStreaming}
+              coverColor={coverColor}
+              artwork={artwork}
+              logo={logo}
+              fontMode={fontMode}
+              musicType={musicType}
+              language={language}
+            />
+          )}
           <div className="w-full border rounded-xl mt-8 bg-gray-50 shadow-md">
             <div className="py-6 flex w-fit mx-auto">
               <FaGrinStars className="w-12 text-yellow-400 mt-2" size={28} />

@@ -36,10 +36,20 @@ function CoverStyleVinyl(props) {
           {props.songTitle}
         </p>
       </div>
-      <div className="py-8">
+      <div className="py-8 flex items-center justify-center">
         <img
           src={props.artwork}
-          className="coverimg-size mx-auto shadow-2xl"
+          className="coverimg-size shadow-2xl z-40"
+          alt="your song cover"
+        />
+        <img
+          src={`${process.env.PUBLIC_URL}/asset/vinyl.png`}
+          className="w-72 z-30"
+          alt="vinyl"
+        />
+        <img
+          src={props.artwork}
+          className="w-60 right-64 transform rotate-45 shadow-2xl z-20 absolute"
           alt="your song cover"
         />
       </div>
